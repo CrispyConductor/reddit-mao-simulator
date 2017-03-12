@@ -13,6 +13,7 @@ project.sublime-workspace
 /dump_*.txt
 /parsed_*.txt
 /outdir
+/data
 /*.ann
 *.swp
 .jshintrc

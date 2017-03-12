@@ -28,19 +28,27 @@ fanny.loadTrainingData(process.argv[2]).then((allData) => {
 	ann.setOption('bitFailLimit', 0.25);
 	console.log('Train data length: ' + trainData.getLength());
 	if (testData) console.log('Test data length: ' + testData.getLength());
+	//let maxBitFail = Math.floor(0.05 * trainData.getLength());
+	//console.log('Max bitfail: ' + maxBitFail);
 	return ann.train(trainData, {
 		cascade: false,
 		//cascade: true,
 		stopFunction: 'MSE',
-		desiredError: 0.01,
+		//desiredError: maxBitFail,
+		desiredError: 0.02,
 		//maxNeurons: 8
-		maxEpochs: 100
+		maxEpochs: 500
 	}, 'default');
 })
 	.then(() => {
 		if (testData) {
 			return ann.testData(testData).then(() => {
-				console.log(ann.getMSE(), ann.getBitFail(), ann.getBitFail() / testData.getLength());
+				let results = {
+					mse: ann.getMSE(),
+					bitFail: ann.getBitFail(),
+					bitFailFrac: ann.getBitFail() / testData.getLength()
+				};
+				console.log('Result Stats: ' + JSON.stringify(results));
 			});
 		}
 	})

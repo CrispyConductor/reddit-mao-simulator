@@ -1,0 +1,56 @@
+html
+	head
+		title /r/MaoGame Simulator
+	body
+		h1 /r/MaoGame Simulator
+		p
+			| This is an experiment that uses machine learning algorithms to try to approximate the rules of /r/MaoGame
+			| from the set of posts and comments that others have made.  It is a work in progress, and not 100% accurate.
+			| It is simply intended as an aid to the Resistance against the harsh oppression of the Chairman!
+		h3 Other Info
+		ul
+			li
+				| This project learns from posts and comments separately.  This is to catch any rules that
+				| may be different for posts vs comments.
+			li
+				| Certain types of rules are much more difficult for these types of algorithms to pick up
+				| on than others.  It may detect certain rules very reliably, but may be unable to detect
+				| certain other rules at all.
+			li
+				| Rules that may be dependent on language features (such as spelling, parts of speech, etc)
+				| can be detected by this tool, but only if the word(s) in question have previously been seen
+				| by the algorithm.
+			li
+				| In theory, the accuracy of the predictions will improve over time as more people make posts
+				| and comments.
+			li
+				| This tool take more than just the textual content of posts/comments into account.  I don't
+				| know if these extra inputs have any impact on the rules, but they are included in case they do.
+			li
+				| Estimated overall accuracy is based on running a test over a subset of data.  Only about 90%
+				| of known posts/comments are used to train the algorithms.  The remaining 10% is used to test
+				| accuracy.
+		h3 Try It
+		div Current overall estimated comment accuracy: #{commentOverallAccuracy}
+		div Current overall estimated post accuracy: #{postOverallAccuracy}
+		form(method='GET' action='/')
+			div Comment Body or Post Title: 
+				input(type='text' name='body' value=curVal_body)
+			div Author name: 
+				input(type='text' name='author' value=curVal_author)
+			div Author flair: 
+				input(type='text' name='authorFlair' value=curVal_authorFlair)
+			div Create time: 
+				input(type='text' name='createTime' value=curVal_createTime)
+			div Is Comment? 
+				input(type='checkbox' name='isComment' checked=curVal_isComment) 
+			div
+				input(type='submit' name='go' value='Go')
+		if typeof bannedProbability === 'number'
+			hr
+			h3 Results:
+			div Estimated probability of being banned: 
+				font(color=bannedProbability > 0.5 ? 'red' : 'green')
+					span #{bannedProbability}
+
+

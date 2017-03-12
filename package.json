@@ -5,11 +5,13 @@
   "scripts": {},
   "dependencies": {
     "bayes": "0.0.6",
+    "express": "^4.15.2",
     "fanny": "^1.0.6",
     "lodash": "^4.17.4",
     "mkdirp": "^0.5.1",
     "objtools": "^1.6.2",
     "pasync": "^1.4.1",
+    "pug": "^2.0.0-beta11",
     "request": "^2.81.0",
     "request-promise": "^4.1.1",
     "xerror": "^1.1.2",
