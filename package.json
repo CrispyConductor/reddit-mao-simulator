@@ -1,0 +1,18 @@
+{
+  "name": "reddit-mao-simulator",
+  "version": "0.0.1",
+  "description": "Machine learning rule estimator and simulator for /r/MaoGame",
+  "scripts": {},
+  "dependencies": {
+    "bayes": "0.0.6",
+    "fanny": "^1.0.6",
+    "lodash": "^4.17.4",
+    "mkdirp": "^0.5.1",
+    "objtools": "^1.6.2",
+    "pasync": "^1.4.1",
+    "request": "^2.81.0",
+    "request-promise": "^4.1.1",
+    "xerror": "^1.1.2",
+    "zstreams": "^3.2.2"
+  }
+}

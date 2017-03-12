@@ -1,0 +1,35 @@
+Note: These are just ideas; not all of them may be implemented, and additional inputs not listed here may also be implemented.
+
+Basic String stats:
+- Length
+- Count of character classes
+	- Uppercase
+	- Lowercase
+	- Punctuation
+	- Whitespace
+	- Vowel/consonant
+	- Each individual character, of letters/numbers/punctuation
+- Fractions of character classes (of overall length)
+- Max number of any consecutive single letter
+- Max of any numeric substring
+- Min of any numeric substring
+- Max number of any consecutive punctuation
+- Max number of any consecutive whitespace
+
+String bayesian inputs:
+- Single input for each bayesian processor
+- Bayesian processors each operate on words tokenized or processed in different ways
+	- Basic bayesian processor; split words on spaces/punctuation/numbers and lowercase
+	- Punctuation bayesian processor; works on single punctuation or strings of consecutive punctuation marks
+	- Unnormalized bayesian processor; split words on whitespace, no other processing
+	- Digram bayesian processor
+	- Trigram bayesian processor
+	- Di-word bayesian processor
+
+String inputs:
+- Basic string stats for whole string
+- The maximum of each basic stat for each word in the string
+- The minimum of each basic stat for each word in the string
+- The mean of each basic stat for each word in the string
+
+
