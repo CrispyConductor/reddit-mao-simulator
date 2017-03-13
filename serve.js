@@ -1,3 +1,5 @@
+'use strict';
+
 const express = require('express');
 const runInputs = require('./run-inputs');
 const pasync = require('pasync');
@@ -10,8 +12,12 @@ const commentBayesFile = 'data/comments/bayes.json';
 const commentAnnFile = 'data/comments/neural_net.ann';
 const commentResultsFile = 'data/comments/train_results.json';
 
-const postResults = JSON.parse(fs.readFileSync(postResultsFile));
-const commentResults = JSON.parse(fs.readFileSync(commentResultsFile));
+let postResults, commentResults;
+
+try {
+	postResults = JSON.parse(fs.readFileSync(postResultsFile));
+	commentResults = JSON.parse(fs.readFileSync(commentResultsFile));
+} catch (err) {}
 
 const app = express();
 app.set('views', './views');
@@ -19,8 +25,8 @@ app.set('view engine', 'pug');
 
 app.get('/', function(req, res) {
 	let templateParams = {
-		commentOverallAccuracy: Math.floor((1 - commentResults.bitFailFrac) * 100) + '%',
-		postOverallAccuracy: Math.floor((1 - postResults.bitFailFrac) * 100) + '%'
+		commentOverallAccuracy: commentResults ? Math.floor((1 - commentResults.bitFailFrac) * 100) + '%' : 'Unknown',
+		postOverallAccuracy: postResults ? Math.floor((1 - postResults.bitFailFrac) * 100) + '%' : 'Unknown'
 	};
 	if (req.query.go) {
 		templateParams.curVal_body = req.query.body;

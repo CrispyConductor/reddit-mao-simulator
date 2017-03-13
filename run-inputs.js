@@ -1,3 +1,5 @@
+'use strict';
+
 const buildInputs = require('./input-generator').buildInputs;
 const pasync = require('pasync');
 const bayes = require('bayes');

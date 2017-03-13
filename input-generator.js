@@ -20,8 +20,8 @@ function buildInputs(data, isComment, bayesClassifiers, trainBayesClassifiers) {
 		addDateFieldInputs(getPath(data, field), (isComment ? 'comment-' : 'post-') + field, inputs);
 	}
 	stringInput('author');
-	stringInput('author_flair_text');
-	dateInput('created_utc');
+	//stringInput('author_flair_text');
+	//dateInput('created_utc');
 	if (isComment) {
 		stringInput('body');
 	} else {
