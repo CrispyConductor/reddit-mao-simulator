@@ -16,7 +16,10 @@ node make-train-data.js "$1" "./data/posts" posts
 
 echo "Training comments ..."
 node train.js "./data/comments/data.train" "./data/comments/neural_net.ann" $2 | tee /tmp/mao_train_comments_out
+cat /tmp/mao_train_comments_out | grep '^Result Stats:' | cut -d ':' -f 2- | cut -d ' ' -f 2- > ./data/comments/train_results.json
 
 echo "Training posts ..."
 node train.js "./data/posts/data.train" "./data/posts/neural_net.ann" $2 | tee /tmp/mao_train_posts_out
+cat /tmp/mao_train_posts_out | grep '^Result Stats:' | cut -d ':' -f 2- | cut -d ' ' -f 2- > ./data/posts/train_results.json
+
 

@@ -1,18 +1,27 @@
 const express = require('express');
 const runInputs = require('./run-inputs');
 const pasync = require('pasync');
+const fs = require('fs');
 
 const postBayesFile = 'data/posts/bayes.json';
 const postAnnFile = 'data/posts/neural_net.ann';
+const postResultsFile = 'data/posts/train_results.json';
 const commentBayesFile = 'data/comments/bayes.json';
 const commentAnnFile = 'data/comments/neural_net.ann';
+const commentResultsFile = 'data/comments/train_results.json';
+
+const postResults = JSON.parse(fs.readFileSync(postResultsFile));
+const commentResults = JSON.parse(fs.readFileSync(commentResultsFile));
 
 const app = express();
 app.set('views', './views');
 app.set('view engine', 'pug');
 
 app.get('/', function(req, res) {
-	let templateParams = {};
+	let templateParams = {
+		commentOverallAccuracy: Math.floor((1 - commentResults.bitFailFrac) * 100) + '%',
+		postOverallAccuracy: Math.floor((1 - postResults.bitFailFrac) * 100) + '%'
+	};
 	if (req.query.go) {
 		templateParams.curVal_body = req.query.body;
 		templateParams.curVal_author = req.query.author;
