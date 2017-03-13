@@ -148,11 +148,24 @@ function ngramTokenizer(n) {
 	};
 }
 
+function nwordTokenizer(n) {
+	return function(text) {
+		let words = text.split(/[^A-Za-z'0-9-]/).map((s) => s.toLowerCase());
+		let tokens = [];
+		for (let i = n - 1; i < words.length; i++) {
+			tokens.push(words.slice(i - n + 1, n).join(' '));
+		}
+		return tokens;
+	}
+}
+
 const bayesTokenizers = [
 	function(text) { return text.split(/[^A-Za-z'0-9-]/).map((s) => s.toLowerCase()); },
 	function(text) { return text.split(''); },
 	ngramTokenizer(2),
-	ngramTokenizer(3)
+	ngramTokenizer(3),
+	nwordTokenizer(2),
+	nwordTokenizer(3)
 ];
 
 function addBayesInputs(value, name, inputs, bayesClassifiers, trainBayesClassifiers) {
