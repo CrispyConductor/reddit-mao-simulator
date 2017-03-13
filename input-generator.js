@@ -138,9 +138,21 @@ function addWordsStats(str, inputs) {
 	Array.prototype.push.apply(inputs, wordLengths);
 }
 
+function ngramTokenizer(n) {
+	return function(text) {
+		let tokens = [];
+		for (let i = n - 1; i < text.length; i++) {
+			tokens.push(text.slice(i - n + 1, n));
+		}
+		return tokens;
+	};
+}
+
 const bayesTokenizers = [
 	function(text) { return text.split(/[^A-Za-z'0-9-]/).map((s) => s.toLowerCase()); },
-	function(text) { return text.split(''); }
+	function(text) { return text.split(''); },
+	ngramTokenizer(2),
+	ngramTokenizer(3)
 ];
 
 function addBayesInputs(value, name, inputs, bayesClassifiers, trainBayesClassifiers) {

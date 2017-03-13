@@ -24,7 +24,7 @@ fanny.loadTrainingData(process.argv[2]).then((allData) => {
 		testData.subset(trainCount, len - trainCount);
 	}
 	//ann = fanny.createANN({ type: 'shortcut', layers: [ allData.getNumInputs(), allData.getNumOutputs() ] });
-	ann = fanny.createANN({ layers: [ allData.getNumInputs(), 350, allData.getNumOutputs() ] });
+	ann = fanny.createANN({ layers: [ allData.getNumInputs(), 400, allData.getNumOutputs() ] });
 	ann.setOption('bitFailLimit', 0.25);
 	console.log('Train data length: ' + trainData.getLength());
 	if (testData) console.log('Test data length: ' + testData.getLength());
@@ -37,7 +37,7 @@ fanny.loadTrainingData(process.argv[2]).then((allData) => {
 		//desiredError: maxBitFail,
 		desiredError: 0.01,
 		//maxNeurons: 5
-		maxEpochs: 200
+		maxEpochs: 300
 	}, 'default');
 })
 	.then(() => {
