@@ -206,11 +206,11 @@ function addDateFieldInputs(value, name, inputs) {
 			}
 		}
 	};
-	addComponentInputs(date.getDate(), 1, 31);
+	//addComponentInputs(date.getDate(), 1, 31);
 	addComponentInputs(date.getDay(), 0, 6);
 	addComponentInputs(date.getHours(), 0, 23);
 	addComponentInputs(date.getMinutes(), 0, 59);
-	addComponentInputs(date.getSeconds(), 0, 59);
+	//addComponentInputs(date.getSeconds(), 0, 59);
 }
 
 

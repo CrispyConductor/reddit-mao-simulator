@@ -31,7 +31,7 @@ zstreams.fromFile(process.argv[2])
 	})
 	.intoPromise()
 	.then(() => {
-		recencyThreshold = recentBannedPost - 2 * 3600;
+		recencyThreshold = recentBannedPost - 6 * 3600;
 		// Process and output data
 		zstreams.fromFile(process.argv[2])
 			.split(/\r?\n/)

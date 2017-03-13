@@ -36,6 +36,7 @@ app.get('/', function(req, res) {
 			author_flair_text: req.query.author_flair_text,
 			created_utc: Math.floor(new Date(req.query.createTime).getTime() / 1000)
 		};
+		if (!data.created_utc || isNaN(data.created_utc)) data.created_utc = Math.floor(new Date().getTime() / 1000);
 		let outputs = runInputs.run(data, isComment);
 		templateParams.bannedProbability = parseFloat(outputs[0].toFixed(2));
 		console.log(isComment, data, outputs[0]);
